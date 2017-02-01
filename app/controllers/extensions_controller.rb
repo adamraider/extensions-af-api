@@ -1,16 +1,24 @@
 class ExtensionsController < ApplicationController
   before_action :set_extension, only: [:show, :update, :destroy]
+  before_action :authenticate_user, except: [:published, :trending]
 
-  # GET /extensions
-  def index
+  # GET /extensions/all
+  def all
+    @extensions = Extension.all
+
+    render json: @extensions
+  end
+
+  # GET /extensions/published
+  def published
     @extensions = Extension.published
 
     render json: @extensions
   end
 
-  # GET /trending
+  # GET /extensions/trending
   def trending
-    @extensions = Extension.trending
+    @extensions = Extension.published.trending
 
     render json: @extensions
   end
