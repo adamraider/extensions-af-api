@@ -8,6 +8,13 @@ class ExtensionsController < ApplicationController
     render json: @extensions
   end
 
+  # GET /trending
+  def trending
+    @extensions = Extension.trending
+
+    render json: @extensions
+  end
+
   # GET /extensions/1
   def show
     render json: @extension
