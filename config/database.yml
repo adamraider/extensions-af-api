@@ -25,4 +25,5 @@ production:
   <<: *default
   database: exaf_production
   username: exaf
-  password: <%= ENV['DB_PASSWORD'] %>
+  password: <%= ENV['EXAF_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
