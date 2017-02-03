@@ -26,12 +26,14 @@ module ExtensionsAfApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-
+    config.action_controller.action_on_unpermitted_parameters = :log
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => :any
       end
     end
+    # default host url
+    Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   end
 end

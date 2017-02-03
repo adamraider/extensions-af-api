@@ -4,7 +4,6 @@ class CreateExtensions < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :desc
       t.string :url
-      t.string :img
       t.boolean :featured
       t.boolean :trending
       t.boolean :published, default: false

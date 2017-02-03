@@ -29,29 +29,29 @@ class ExtensionsController < ApplicationController
   end
 
   # POST /extensions
-  # def create
-  #   @extension = Extension.new(extension_params)
+  def create
+    @extension = Extension.new(extension_params)
 
-  #   if @extension.save
-  #     render json: @extension, status: :created, location: @extension
-  #   else
-  #     render json: @extension.errors, status: :unprocessable_entity
-  #   end
-  # end
+    if @extension.save
+      render json: @extension, status: :created, location: @extension
+    else
+      render json: @extension.errors, status: :unprocessable_entity
+    end
+  end
 
   # PATCH/PUT /extensions/1
-  # def update
-  #   if @extension.update(extension_params)
-  #     render json: @extension
-  #   else
-  #     render json: @extension.errors, status: :unprocessable_entity
-  #   end
-  # end
+  def update
+    if @extension.update(extension_params)
+      render json: @extension
+    else
+      render json: @extension.errors, status: :unprocessable_entity
+    end
+  end
 
   # DELETE /extensions/1
-  # def destroy
-  #   @extension.destroy
-  # end
+  def destroy
+    @extension.destroy
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -61,6 +61,6 @@ class ExtensionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def extension_params
-      params.require(:extension).permit(:name, :desc, :url)
+      params.require(:extension).permit(:name, :desc, :url, :published, :trending, :featured)
     end
 end

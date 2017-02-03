@@ -12,6 +12,8 @@ gem 'rack-cors'
 gem 'knock'
 gem 'bcrypt'
 gem 'active_model_serializers'
+gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 
 group :development, :test do
   gem 'byebug', platform: :mri
