@@ -1,5 +1,10 @@
 class Extension < ApplicationRecord
   validates :name, presence: true
+  default_scope { order(published: :asc) }
+  default_scope { order(featured: :asc) }
+  default_scope { order(trending: :asc) }
+  default_scope { order(name: :asc) }
+
   # This method associates the attribute ":image" with a file attachment
   has_attached_file :image, styles: {
     thumb: '100x100>',

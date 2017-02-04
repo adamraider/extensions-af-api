@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # extension resource
   get '/extensions/:id' => 'extensions#show'
   put '/extensions/:id' => 'extensions#update'
+  post '/extensions' => 'extensions#create'
 
   post 'user_token' => 'user_token#create'
 end

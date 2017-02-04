@@ -209,7 +209,17 @@ extensions = [
   }
 ]
 
-Extension.create(extensions)
+for extension in extensions
+  puts extension.inspect
+
+  e = Extension.find_or_create_by(name: extension[:name])
+  for key in [:name, :url, :desc, :published, :trending, :featured]
+    val = extension[:key]
+    e[key] ||= val
+  end
+  e.update_attribute(:image, extension[:image]) unless e.image_file_name
+  e.save
+end
 
 users = [
   {
@@ -222,4 +232,4 @@ users = [
   }
 ]
 
-User.create(users)
+User.create(users) unless User.all.length > 1

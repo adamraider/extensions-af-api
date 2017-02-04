@@ -1,6 +1,6 @@
 class ExtensionsController < ApplicationController
   before_action :set_extension, only: [:show, :update, :destroy]
-  before_action :authenticate_user, except: [:published, :trending]
+  before_action :authenticate_user, except: [:published, :trending, :create]
 
   # GET /extensions/all
   def all
@@ -30,10 +30,10 @@ class ExtensionsController < ApplicationController
 
   # POST /extensions
   def create
-    @extension = Extension.new(extension_params)
-
+    @extension = Extension.new(extension_public_params)
+    p params[:extension][:image]
     if @extension.save
-      render json: @extension, status: :created, location: @extension
+      render json: @extension, status: :created
     else
       render json: @extension.errors, status: :unprocessable_entity
     end
@@ -61,6 +61,10 @@ class ExtensionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def extension_params
-      params.require(:extension).permit(:name, :desc, :url, :published, :trending, :featured)
+      params.require(:extension).permit(:name, :desc, :url, :image, :email, :published, :trending, :featured)
+    end
+
+    def extension_public_params
+      params.require(:extension).permit(:name, :desc, :url, :image, :email)
     end
 end
