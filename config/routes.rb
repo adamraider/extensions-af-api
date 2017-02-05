@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :leads
   root 'extensions#published'
   get '/extensions/all' => 'extensions#all'
   get '/extensions/published' => 'extensions#published'
