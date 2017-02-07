@@ -42,6 +42,7 @@ class ExtensionsController < ApplicationController
   # PATCH/PUT /extensions/1
   def update
     params["extension"].delete("id")
+    params["extension"].delete("image")
     params["extension"].delete("created_at")
     params["extension"].delete("updated_at")
     p params[:extension]
